@@ -23,6 +23,7 @@ class Grid(object):
                     parsed_grid[i][j] = 0
         self.grid_weigths = np.array(parsed_grid)
         self.grid_snakes = np.zeros(self.grid_weigths.shape)
+        print("Wormholes:",self.wormholes)
     def neighbours(self,origin: Tuple[int,int])->List[Tuple[Tuple[int,int],Direction]]:
         possible_whole = [
             self.getNext(origin,Direction.U),
@@ -71,4 +72,10 @@ class Grid(object):
             case _:
                 raise ValueError("match error")
 
+        xn,yn = r_
+        if xn > self.grid_snakes.shape[0] :
+            xn = 0
+        if yn > self.grid_snakes.shape[0] :
+            yn = 0
+        r_ = (xn,yn)
         return r_
