@@ -73,9 +73,10 @@ class Grid(object):
                 raise ValueError("match error")
 
         xn,yn = r_
-        if xn > self.grid_snakes.shape[0] :
+        if xn >= self.grid_snakes.shape[0] :
             xn = 0
-        if yn > self.grid_snakes.shape[0] :
+        if yn >= self.grid_snakes.shape[0] :
             yn = 0
+
         r_ = (xn,yn)
         return r_
