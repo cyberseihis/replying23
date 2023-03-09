@@ -27,12 +27,13 @@ class Snake(object):
         self.segments.append(head)
 
     def int_add_seg(self,segment:Tuple[int,int]):
-        raise NotImplementedError("NOt working yet! ")
         if segment not in self.int_options():
             raise ValueError("You are trying to add an invalid segment.")
         if len(self.segments) >= self.length:
             raise ValueError("You are trying to add to a finished snake.")
+        self.directions.append(None)
         self.segments.append(segment)
+        self.grid.register(segment)
 
     def int_mv_seg(self,direction:Direction):
         if len(self.segments) >= self.length:
