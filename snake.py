@@ -6,16 +6,14 @@ from .grid import Grid,Direction
 
 
 class Snake(object):
+    grid:Grid
     length:Optional[int]
     segments:List[Tuple[int]]
+    directions:List[Direction]
 
-    def __init__(self,length:Optional[int] = None):
+    def __init__(self,grid:Grid,length:Optional[int] = None):
         self.length = length
-
-    def create_from_list(self,segments:List[Tuple[int,int]]):
-        if self.length is not None:
-            raise ValueError("Snake already initialised")
-        self.segments = segments
+        self.grid = grid
 
     def to_list(self)->List[Tuple[int,int]]:
         return self.segments
@@ -28,6 +26,7 @@ class Snake(object):
         self.segments.append(head)
 
     def int_add_seg(self,segment:Tuple[int,int]):
+        raise NotImplementedError("NOt working yet! ")
         if segment not in self.int_options():
             raise ValueError("You are trying to add an invalid segment.")
         if len(self.segments) >= self.length:
@@ -38,13 +37,18 @@ class Snake(object):
         if len(self.segments) >= self.length:
             raise ValueError("You are trying to add to a finished snake.")
         tail = self.segments[-1]
-        segment = Grid.getNext(tail,direction)
+        segment = self.grid.getNext(tail,direction)
+        if self.grid.is_occupied(segment):
+            raise ValueError(f"You are trying to move occupied segment: {segment}")
         self.segments.append(segment)
+        self.directions.append(direction)
+        self.grid.register(segment)
 
-
-    def int_options(self)->List(Tuple[int,int]):
+    def int_options(self)->List(Tuple(Tuple[int,int],Direction)):
+        if len(self.segments) >= self.length:
+            return []
         tail = self.segments[-1]
-        neighbours = Grid.neighbours(tail)
+        neighbours = self.grid.neighbours(tail)
         return neighbours
         
     
