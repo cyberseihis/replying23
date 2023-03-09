@@ -62,9 +62,9 @@ class Grid(object):
         x,y = origin
         match(direction):
             case Direction.U:
-                r_ =  (x+1,y)
-            case Direction.D:
                 r_ =  (x-1,y)
+            case Direction.D:
+                r_ =  (x+1,y)
             case Direction.L:
                 r_ =  (x,y-1)
             case Direction.R:
