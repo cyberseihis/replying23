@@ -18,7 +18,7 @@ class Grid(object):
             for j in range(len(parsed_grid[i])):
                 if parsed_grid[i][j] == '*':
                     #set wormholes
-                    print("Add",(i,j))
+                    #print("Add",(i,j))
                     self.wormholes.add((i,j))
                     parsed_grid[i][j] = 0
         self.grid_weigths = np.array(parsed_grid)
