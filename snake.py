@@ -1,7 +1,7 @@
 
 
 from typing import List, Optional, Tuple
-from .grid import Grid,Direction
+from grid import Grid,Direction
 
 
 
@@ -44,7 +44,7 @@ class Snake(object):
         self.directions.append(direction)
         self.grid.register(segment)
 
-    def int_options(self)->List(Tuple(Tuple[int,int],Direction)):
+    def int_options(self)->List[Tuple[Tuple[int,int],Direction]]:
         if len(self.segments) >= self.length:
             return []
         tail = self.segments[-1]

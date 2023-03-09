@@ -2,16 +2,16 @@ from enum import Enum
 from typing import Dict, List, Set, Tuple
 import numpy as np
 
-class Direction(Enum,str):
+class Direction(Enum):
     U=1
     D=2
     L=3
     R=4
 
-class Grid:
+class Grid(object):
     grid_weigths:np.ndarray
     grid_snakes:np.ndarray
-    wormholes:Set[Tuple(int,int)]
+    wormholes:Set[Tuple[int,int]]
     def __init__(self,parsed_grid:List[List[int]]) -> None:
         wormholes = set()
         for i in range(len(parsed_grid)):
@@ -22,7 +22,7 @@ class Grid:
                     parsed_grid[i][j] = 0
         self.grid_weigths = np.array(parsed_grid)
         self.grid_snakes = np.zeros(self.grid_weigths.shape)
-    def neighbours(self,origin: Tuple[int,int])->List(Tuple(Tuple[int,int],Direction)):
+    def neighbours(self,origin: Tuple[int,int])->List[Tuple[Tuple[int,int],Direction]]:
         possible_whole = [
             self.getNext(origin,Direction.U),
             self.getNext(origin,Direction.D),
