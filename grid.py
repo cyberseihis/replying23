@@ -35,7 +35,7 @@ class Grid(object):
         w_stack = set()
         while possible_whole:
             n = possible_whole.pop()
-            if self.is_occupied(n):
+            if self.is_occupied(n[0]):
                 continue
             if n in self.wormholes and n not in w_stack:
                 #get neighbours from all wholes
