@@ -14,6 +14,7 @@ class Snake(object):
     def __init__(self,grid:Grid,length:Optional[int] = None):
         self.length = length
         self.grid = grid
+        self.directions = list()
 
     def to_list(self)->List[Tuple[int,int]]:
         return self.segments

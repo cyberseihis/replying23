@@ -13,12 +13,13 @@ class Grid(object):
     grid_snakes:np.ndarray
     wormholes:Set[Tuple[int,int]]
     def __init__(self,parsed_grid:List[List[int]]) -> None:
-        wormholes = set()
+        self.wormholes = set()
         for i in range(len(parsed_grid)):
             for j in range(len(parsed_grid[i])):
                 if parsed_grid[i][j] == '*':
                     #set wormholes
-                    wormholes.add((i,j))
+                    print("Add",(i,j))
+                    self.wormholes.add((i,j))
                     parsed_grid[i][j] = 0
         self.grid_weigths = np.array(parsed_grid)
         self.grid_snakes = np.zeros(self.grid_weigths.shape)
@@ -31,7 +32,7 @@ class Grid(object):
             ]
         n_list = list()
         w_stack = set()
-        while not possible_whole:
+        while possible_whole:
             n = possible_whole.pop()
             if self.is_occupied(n):
                 continue
@@ -46,6 +47,7 @@ class Grid(object):
                     possible_whole + tmp
             else:
                 n_list.append(n)
+        return n_list
 
     def register(self,origin: Tuple[int,int]):
         x,y = origin
@@ -68,3 +70,5 @@ class Grid(object):
                 r_ =  (x+1,y)
             case _:
                 raise ValueError("match error")
+
+        return r_
