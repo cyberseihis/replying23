@@ -40,7 +40,7 @@ class Snake(object):
             raise ValueError("You are trying to add to a finished snake.")
         tail = self.segments[-1]
         segment,dir = self.grid.getNext(tail,direction)
-        if self.grid.is_occupied(segment[0]):
+        if self.grid.is_occupied(segment):
             raise ValueError(f"You are trying to move occupied segment: {segment}")
         self.segments.append(segment)
         self.directions.append(direction)
