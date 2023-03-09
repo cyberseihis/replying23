@@ -13,5 +13,28 @@ def parsing():
     lines.pop(0)
     return column,rows,number_of_snakes,snake_lengths,lines
 
+# Get the data from the text file
 column,rows,number_of_snakes,snake_lengths,grid = parsing()
 
+# a loop through the grid
+for x in range(len(grid)) :
+    for y in range(len(grid[x])) :
+        grid[x][y]
+        print(grid[x][y],end=" ")
+    print("\n")
+
+# loop through the grid to find the first instance of the largest number
+max = 0
+max_x = 0
+max_y = 0
+for x in range(len(grid)) :
+    for y in range(len(grid[x])) :
+        if grid[x][y] != "*":
+            if int(grid[x][y]) > max :
+                max = int(grid[x][y])
+                max_x = x
+                max_y = y
+        #print(grid[x][y],end=" ")
+    #print("\n")
+
+print("largest (x,y) is " + str(max) + " at location (" + str(max_x) + "," + str(max_y) + ")" ) 
