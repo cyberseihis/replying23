@@ -25,6 +25,7 @@ class Snake(object):
         self.length = length
         self.segments = list()
         self.segments.append(head)
+        self.grid.register(head)
 
     def int_add_seg(self,segment:Tuple[int,int]):
         if segment not in self.int_options():
