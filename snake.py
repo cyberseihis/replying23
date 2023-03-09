@@ -1,7 +1,7 @@
 
 
 from typing import List, Optional, Tuple
-from .grid import Grid
+from .grid import Grid,Direction
 
 
 
@@ -32,6 +32,13 @@ class Snake(object):
             raise ValueError("You are trying to add an invalid segment.")
         if len(self.segments) >= self.length:
             raise ValueError("You are trying to add to a finished snake.")
+        self.segments.append(segment)
+
+    def int_mv_seg(self,direction:Direction):
+        if len(self.segments) >= self.length:
+            raise ValueError("You are trying to add to a finished snake.")
+        tail = self.segments[-1]
+        segment = Grid.getNext(tail,direction)
         self.segments.append(segment)
 
 
