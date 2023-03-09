@@ -52,7 +52,7 @@ class Grid(object):
 
     def register(self,origin: Tuple[int,int]):
         x,y = origin
-        self.grid_snakes[x,y]
+        self.grid_snakes[x,y] = 1
 
     def is_occupied(self,origin: Tuple[int,int]):
         x,y = origin
