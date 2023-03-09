@@ -79,4 +79,4 @@ class Grid(object):
             yn = 0
 
         r_ = (xn,yn)
-        return r_
+        return (r_,direction)
